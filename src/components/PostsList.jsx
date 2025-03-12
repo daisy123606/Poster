@@ -5,6 +5,8 @@ import Modal from './Modal';
 import LoadingSpinner from './LoadingSpinner';
 import EditPost from '../components/Edit';
 
+const API_URL = import.meta.env.VITE_API_URL; // ✅ Use environment variable
+
 function PostsList({ isPosting, onStopPosting }) {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -13,55 +15,69 @@ function PostsList({ isPosting, onStopPosting }) {
   useEffect(() => {
     async function fetchPosts() {
       setLoading(true);
-      const response = await fetch('http://localhost:8080/posts');
-      const resData = await response.json();
-      setPosts(resData.posts);
+      try {
+        const response = await fetch(`${API_URL}/posts`);
+        const resData = await response.json();
+        setPosts(resData.posts);
+      } catch (error) {
+        console.error('Failed to fetch posts:', error);
+      }
       setLoading(false);
     }
 
     fetchPosts();
   }, []);
 
-  function addPostHandler(postData) {
-    async function addPost() {
-      setLoading(true);
-      await fetch('http://localhost:8080/posts', {
+  async function addPostHandler(postData) {
+    setLoading(true);
+    try {
+      await fetch(`${API_URL}/posts`, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
-        body: JSON.stringify(postData)
+        body: JSON.stringify(postData),
       });
-      setLoading(false);
+      setPosts((existingData) => [postData, ...existingData]);
+    } catch (error) {
+      console.error('Failed to add post:', error);
     }
-
-    addPost();
-    setPosts((existingData) => [postData, ...existingData]);
+    setLoading(false);
   }
 
   async function deletePostHandler(postId) {
     setLoading(true);
-    await fetch(`http://localhost:8080/posts/${postId}`, {
-      method: 'DELETE',
-    });
-    setPosts((existingData) => existingData.filter(post => post.id !== postId));
+    try {
+      await fetch(`${API_URL}/posts/${postId}`, {
+        method: 'DELETE',
+      });
+      setPosts((existingData) =>
+        existingData.filter((post) => post.id !== postId)
+      );
+    } catch (error) {
+      console.error('Failed to delete post:', error);
+    }
     setLoading(false);
   }
 
   async function saveEditedPost(updatedPost) {
     setLoading(true);
-    await fetch(`http://localhost:8080/posts/${updatedPost.id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(updatedPost),
-    });
-    setPosts((existingData) =>
-      existingData.map((post) =>
-        post.id === updatedPost.id ? updatedPost : post
-      )
-    );
+    try {
+      await fetch(`${API_URL}/posts/${updatedPost.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(updatedPost),
+      });
+      setPosts((existingData) =>
+        existingData.map((post) =>
+          post.id === updatedPost.id ? updatedPost : post
+        )
+      );
+    } catch (error) {
+      console.error('Failed to edit post:', error);
+    }
     setLoading(false);
     setEditingPost(null);
   }
@@ -74,10 +90,7 @@ function PostsList({ isPosting, onStopPosting }) {
     <>
       {isPosting && (
         <Modal onCloseModal={onStopPosting}>
-          <NewPost
-            onCancel={onStopPosting}
-            onAddPost={addPostHandler}
-          />
+          <NewPost onCancel={onStopPosting} onAddPost={addPostHandler} />
         </Modal>
       )}
 
@@ -85,23 +98,16 @@ function PostsList({ isPosting, onStopPosting }) {
 
       {editingPost && (
         <Modal onCloseModal={cancelEdit}>
-          <EditPost
-            post={editingPost}
-            onSave={saveEditedPost}
-            onCancel={cancelEdit}
-          />
+          <EditPost post={editingPost} onSave={saveEditedPost} onCancel={cancelEdit} />
         </Modal>
       )}
 
       {!loading && posts.length > 0 && (
-        <ul className='posts'>
+        <ul className="posts">
           {posts.map((post) => (
-            <li key={post.id} className='post'>
-              <Post
-                author={post.author}
-                body={post.body}
-              />
-              <div className='post-actions'>
+            <li key={post.id} className="post">
+              <Post author={post.author} body={post.body} />
+              <div className="post-actions">
                 <button onClick={() => setEditingPost(post)}>✏️</button>
                 <button onClick={() => deletePostHandler(post.id)}>🗑️</button>
               </div>
