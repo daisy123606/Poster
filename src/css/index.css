@@ -52,7 +52,7 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	border-bottom: 2px solid #00ff00;
+	border-bottom: 2px solid #00008b;
   }
   
   .logo {
@@ -60,7 +60,7 @@
 	display: flex;
 	gap: 1.5rem;
 	align-items: center;
-	color: #483d8b;
+	color: #00008b;
   }
   
   .button {
@@ -103,7 +103,7 @@
   /* New Post and Edit Post style (Unified) */
   
   .form {
-	background-color: #6233b9;
+	background-color: #23d423;
 	padding: 1rem;
 	width: 20rem;
 	margin: 0 auto;
@@ -114,7 +114,7 @@
   .form label {
 	display: block;
 	margin-bottom: 0.5rem;
-	color: #eadbfb;
+	color: #000000;
 	font-weight: bold;
   }
   
@@ -126,7 +126,7 @@
 	padding: 0.75rem;
 	border-radius: 6px;
 	border: none;
-	background-color: #c4a9e4;
+	background-color: #ffffe0;
 	color: #28262c;
 	margin-bottom: 1rem;
   }
@@ -143,12 +143,12 @@
 	padding: 0.5rem 1.5rem;
 	border: none;
 	border-radius: 4px;
-	background-color: #34036c;
-	color: #e5d5f7;
+	background-color: #23d423;
+	color: #3498db;
   }
   
   .actions button:hover {
-	background-color: #23014a;
+	background-color: #249f24;
   }
   
   .actions button[type='button'] {
@@ -156,13 +156,13 @@
   }
   
   .actions button[type='button']:hover {
-	color: #d1bee6;
+	color: #249f24;
   }
   
   .post {
 	margin: 1rem 0;
 	padding: 1rem;
-	background-color: #9c7eee;
+	background-color: #00008b;
 	border-radius: 8px;
 	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 	animation: animate-in 1s ease-out forwards;
@@ -171,7 +171,7 @@
   .author {
 	font-size: 0.8rem;
 	font-weight: bold;
-	color: #543280;
+	color: #7fff00;
 	margin: 0;
 	text-transform: uppercase;
   }
@@ -180,7 +180,7 @@
 	white-space: pre-wrap;
 	font-size: 1.25rem;
 	margin: 0.25rem 0 0 0;
-	color: #593884;
+	color: #7fff00;
 	font-style: italic;
   }
   
@@ -220,6 +220,6 @@
   }
   
   .post-actions button:hover {
-	color: #8c6cf7;
+	color: #249f24;
   }
   
