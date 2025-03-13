@@ -118,8 +118,8 @@ function PostsList({ isPosting, onStopPosting }) {
 
       {!loading && posts.length === 0 && (
         <div style={{ textAlign: 'center', color: 'white' }}>
-          <h2>There is no post yet.</h2>
-          <p>Try to add some!</p>
+          <h2 className='cos'>There is no post yet.</h2>
+          <p className='cos'>Try to add some!</p>
         </div>
       )}
     </>
