@@ -52,7 +52,7 @@
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	border-bottom: 2px solid #ece1fa;
+	border-bottom: 2px solid #00ff00;
   }
   
   .logo {
@@ -60,7 +60,7 @@
 	display: flex;
 	gap: 1.5rem;
 	align-items: center;
-	color: #ece1fa;
+	color: #483d8b;
   }
   
   .button {
