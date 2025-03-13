@@ -100,8 +100,6 @@
 	z-index: 1;
   }
   
-  /* New Post and Edit Post style (Unified) */
-  
   .form {
 	background-color: #23d423;
 	padding: 1rem;
@@ -151,11 +149,11 @@
 	background-color: #507d2a;
   }
   
-  .actions button[type='button'] {
+  .actions button[type="button"] {
 	background-color: transparent;
   }
   
-  .actions button[type='button']:hover {
+  .actions button[type="button"]:hover {
 	color: #507d2a;
   }
   
@@ -166,6 +164,33 @@
 	border-radius: 8px;
 	box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 	animation: animate-in 1s ease-out forwards;
+	position: relative; 
+	transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .post:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .post-actions {
+	display: flex;
+	gap: 0.5rem;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+  }
+  
+  .post-actions button {
+	background-color: transparent;
+	border: none;
+	color: #ece1fa;
+	cursor: pointer;
+	font-size: 1.1rem;
+  }
+  
+  .post-actions button:hover {
+	color: #249f24;
   }
   
   .author {
@@ -175,8 +200,8 @@
 	margin: 0;
 	text-transform: uppercase;
   }
-
-  .cos{
+  
+  .cos {
 	color: #00008b;
   }
   
@@ -208,22 +233,4 @@
 	gap: 1rem;
 	grid-template-columns: repeat(3, 30%);
 	justify-content: center;
-  }
-  
-  .post-actions {
-	display: flex;
-	gap: 0.5rem;
-  }
-  
-  .post-actions button {
-	background-color: transparent;
-	border: none;
-	color: #ece1fa;
-	cursor: pointer;
-	font-size: 1.1rem;
-  }
-  
-  .post-actions button:hover {
-	color: #249f24;
-  }
-  
+  }  
