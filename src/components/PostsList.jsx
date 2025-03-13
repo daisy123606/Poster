@@ -5,7 +5,7 @@ import Modal from './Modal';
 import LoadingSpinner from './LoadingSpinner';
 import EditPost from '../components/Edit';
 
-const API_URL = import.meta.env.VITE_API_URL; // ✅ Use environment variable
+const API_URL = import.meta.env.VITE_API_URL; 
 
 function PostsList({ isPosting, onStopPosting }) {
   const [posts, setPosts] = useState([]);
